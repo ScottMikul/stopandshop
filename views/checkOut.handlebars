@@ -1,0 +1,15 @@
+{{!-- for each item in checkout table --}}
+{{#each items}}
+<div class="row">
+    <div class="card border-dark mb-3 mr-2 col-sm-12 col-md-3" style="max-width: 20rem;">
+        <div class="card-header" name="item-header">{{item_header}}</div>
+        <div class="card-body">
+            <img src="./assets/img/defult-sale-item.jpg" class="card-img-top" alt="...">
+            {{!-- <h4 class="card-title" name="item-title">Item title</h4> --}}
+            <p class="card-text" name="item-explanation">Item Deatils : {{item_explanation}}</p>
+            <p class="card-text" name="item-price">Price:$ {{item_price}}</p>
+        </div>
+    </div>
+
+</div>
+{{/each}}
