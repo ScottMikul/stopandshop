@@ -1,0 +1,22 @@
+.fa-shopping-cart{
+    font-size: 25px;
+}
+#web_title{
+    color:white;
+    font-family: 'Indie Flower', cursive;
+}
+.form-inline{
+    margin-right: 20px;
+}
+.nav-link{
+    color: white;
+}
+.card-click-link:hover,:link{
+    text-decoration: none;   
+
+    color: inherit;
+
+}
+body{
+    margin:0px;
+}
