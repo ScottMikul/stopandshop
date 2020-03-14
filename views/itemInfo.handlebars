@@ -1,6 +1,6 @@
   <div class="jumbotron">
-                <form method="post" action="/item/shop" id="item-info-form">
-                <h3 class="display-5">{{item_header}}</h3>
+            <form method="post" action="/item/shop" id="item-info-form">
+                <h3 class="display-5" id={{this.id}} >{{item_header}}</h3>
                 <img src="./assets/img/defult-sale-item.jpg" class="align-self-center mr-3" alt="..." width="200px" height="200px">
                 
                 <hr class="my-4">
@@ -19,8 +19,11 @@
                 <p>Delivery ETA: {{item_delivery}}</p>
                 <p class="lead">
                   <div class="col-sm-12 col-md-12 col-lg-12">
-                    <button type="submit" form="item-info-form" value="Submit" class="btn btn-primary btn-lg">Add to store</button>
+                    <button type="submit" form="item-info-form" value="Submit" class="btn btn-primary btn-lg">Add to cart</button>
                  </div>
                 </p>
-            </form>
-            </div>
+          </form>
+    </div>
+
+
+    
