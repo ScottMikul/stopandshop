@@ -1,15 +1,13 @@
 {{#each items}}
-{{#unless quantity}}
 <a href="item-info.html" class="card-link">
     <div class="card border-dark  col-sm-12 col-md-3 float-left mb-3 mx-3" style="max-width: 20rem;">
-        <div class="card-header" name="item-header">{{item_header}}</div>
+        <div class="card-header" name="item-header">{{this.item_header}}</div>
         <div class="card-body">
             <img src="./assets/img/defult-sale-item.jpg" class="card-img-top" alt="...">
             {{!-- <h4 class="card-title" name="item-title">Item title</h4> --}}
-            <p class="card-text" name="item-explanation">{{item_explanation}}</p>
-            <p class="card-text" name="item-price">$ {{item_price}}</p>
+            <p class="card-text" name="item-explanation">{{this.item_explanation}}</p>
+            <p class="card-text" name="item-price">$ {{this.item_price}}</p>
         </div>
     </div>
 </a>
-{{/unless}}
 {{/each}}

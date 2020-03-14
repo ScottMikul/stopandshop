@@ -50,4 +50,16 @@ module.exports = function(app) {
       });
     }
   });
+
+  app.get("/api/products", async (req, res) => {
+    const products = await db.Product.findAll();
+    res.json(products);
+  });
+
+  app.post("/api/products", async (req,res)=>{
+    const newProduct = req.body;
+    await db.Product.create(newProduct);
+    res.status(200);
+    res.send("Success");
+  })
 };
