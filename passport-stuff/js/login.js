@@ -1,16 +1,19 @@
 $(document).ready(function() {
   // Getting references to our form and inputs
   let loginForm = $("form.login");
-  let emailInput = $("input#email-input");
-  let passwordInput = $("input#password-input");
+  let emailInput = $("input#loginForm-email");
+  let passwordInput = $("input#loginForm-pass");
 
   // When the form is submitted, we validate there's an email and password entered
   loginForm.on("submit", function(event) {
     event.preventDefault();
+    alert("hello");
     let userData = {
       email: emailInput.val().trim(),
       password: passwordInput.val().trim()
     };
+    
+    console.log("USER DATA : ",userData);
 
     if (!userData.email || !userData.password) {
       return;
@@ -24,16 +27,18 @@ $(document).ready(function() {
 
   // loginUser does a post to our "api/login" route and if successful, redirects us the the members page
   function loginUser(email, password) {
-    $.post("/api/login", {
-      email: email,
-      password: password
-    })
-      .then(function() {
-        window.location.replace("/members");
-        // If there's an error, log the error
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    console.log("email : ",email);
+    console.log("password :",password)
+    // $.post("/api/login", {
+    //   email: email,
+    //   password: password
+    // })
+    //   .then(function() {
+    //     window.location.replace("/members");
+    //     // If there's an error, log the error
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
+    //   });
   }
 });
