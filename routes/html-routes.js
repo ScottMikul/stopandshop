@@ -9,8 +9,10 @@ const db = require("../models");
 
 function isAdmin(req,res, next){
   console.log("chekcin if is an admin");
-  if(req.user.isAdmin){
-    console.log("is Logged in user");
+  if(req.user){
+    if(req.user.isAdmin){
+      console.log("is Logged in user");
+    }
     
   }else{
     console.log("couldn't find user");
@@ -56,9 +58,6 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/members.html"));
   });
 
-<<<<<<< HEAD
-
-=======
   // creating rouate for Item-Info html page when you click on each item 
   app.get("/item/:id", (req, res) => {
     let id =req.params.id;
@@ -76,5 +75,4 @@ module.exports = function(app) {
     });
        
   });
->>>>>>> aebe09f293007ebdeab711914bc71bc7457d4fd6
 };
