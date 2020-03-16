@@ -27,13 +27,14 @@ module.exports = function(app) {
     // }
     const products = await db.Product.findAll();
     const items = products.map(item =>  {return {
+      id:item.id,
       quantity: item.quantity,
        item_explanation: item.item_explanation,
         item_header:item.item_header,
          item_price:item.item_price}
       });
 
-    console.log(products);
+    // console.log(products);
     res.render("index", {items:items});
   });
 
@@ -55,5 +56,25 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/members.html"));
   });
 
+<<<<<<< HEAD
 
+=======
+  // creating rouate for Item-Info html page when you click on each item 
+  app.get("/item/:id", (req, res) => {
+    let id =req.params.id;
+    let findItem = db.Product.findOne({where: { id: `${id}` }}).then(function(item) {
+      
+      console.log("item --->>>",item);
+      let itemInfo={
+        item_header:item.item_header,
+        item_price:item.item_price,
+        item_explanation:item.item_explanation,
+        quantity:item.quantity
+      }
+      
+      res.render("itemInfo", {item:itemInfo});
+    });
+       
+  });
+>>>>>>> aebe09f293007ebdeab711914bc71bc7457d4fd6
 };
