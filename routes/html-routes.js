@@ -6,6 +6,18 @@ let isAuthenticated = require("../config/middleware/isAuthenticated");
 
 const db = require("../models");
 
+
+function isAdmin(req,res, next){
+  console.log("chekcin if is an admin");
+  if(req.user.isAdmin){
+    console.log("is Logged in user");
+    
+  }else{
+    console.log("couldn't find user");
+  }
+  next();
+}
+
 module.exports = function(app) {
 
   app.get("/", async (req, res) => {
@@ -25,6 +37,10 @@ module.exports = function(app) {
     res.render("index", {items:items});
   });
 
+  app.get("/admin/products", isAdmin, (req,res)=>{
+    res.send("success");
+  });
+
   app.get("/login", (req, res) => {
     // If the user already has an account send them to the members page
     if (req.user) {
@@ -38,4 +54,6 @@ module.exports = function(app) {
   app.get("/members", isAuthenticated, (req, res) => {
     res.sendFile(path.join(__dirname, "../public/members.html"));
   });
+
+
 };
