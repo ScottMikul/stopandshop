@@ -37,7 +37,8 @@ module.exports = function(app) {
   // Here we've add our isAuthenticated middleware to this route.
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
   app.get("/members", isAuthenticated, (req, res) => {
-    res.sendFile(path.join(__dirname, "../public/members.html"));
+    res.render("members");
+    // res.sendFile(path.join(__dirname, "../public/members.html"));
   });
 
   // creating rouate for Item-Info html page when you click on each item 
@@ -45,8 +46,9 @@ module.exports = function(app) {
     let id =req.params.id;
     let findItem = db.Product.findOne({where: { id: `${id}` }}).then(function(item) {
       
-      console.log("item --->>>",item);
+      // console.log("item --->>>",item);
       let itemInfo={
+        id:item.id,
         item_header:item.item_header,
         item_price:item.item_price,
         item_explanation:item.item_explanation,

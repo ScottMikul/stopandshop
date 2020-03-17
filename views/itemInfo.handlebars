@@ -1,6 +1,5 @@
- 
   <div class="jumbotron">
-            <form method="post" action="/item/shop" id="item-info-form">
+            <form  id="item-info-form"> 
                 <h3 class="display-5" > Title : {{item.item_header}}</h3>
                 <img src="../assets/img/defult-sale-item.jpg" class="align-self-center mr-3" alt="..." width="200px" height="200px">
                 
@@ -19,12 +18,15 @@
                   </div>
                 <p>Delivery ETA: 03/28/2020</p>
                 <p class="lead">
-                  <div class="col-sm-12 col-md-12 col-lg-12">
-                    <button type="submit" form="item-info-form" value="Submit" class="btn btn-primary btn-lg">Add to cart</button>
+                  <div class="col-sm-12 col-md-12 col-lg-12 " id="btnparent">
+                    {{!-- <button type="submit" form="item-info-form" value="Submit" id="{{item.id}}" class="btn btn-primary btn-lg add-to-cart">Add to cart</button> --}}
+                  
                  </div>
                 </p>
           </form>
+           <button  value="{{item.id}}"= class="btn btn-primary btn-lg add-to-cart">Add to cart</button>
     </div>
+
     
 
 

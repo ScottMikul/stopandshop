@@ -29,16 +29,16 @@ $(document).ready(function() {
   function loginUser(email, password) {
     console.log("email : ",email);
     console.log("password :",password)
-    // $.post("/api/login", {
-    //   email: email,
-    //   password: password
-    // })
-    //   .then(function() {
-    //     window.location.replace("/members");
-    //     // If there's an error, log the error
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-    //   });
+    $.post("/api/login", {
+      email: email,
+      password: password
+    })
+      .then(function() {
+        window.location.replace("/members");
+        // If there's an error, log the error
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 });

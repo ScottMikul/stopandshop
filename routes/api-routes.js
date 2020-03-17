@@ -19,11 +19,14 @@ module.exports = function(app) {
   // otherwise send back an error
   app.post("/api/signup", (req, res) => {
     db.User.create({
+      name: req.body.name,
       email: req.body.email,
       password: req.body.password
     })
       .then(function() {
         res.redirect(307, "/api/login");
+        // console.log("user created !");
+        // res.sendStatus(200);
       })
       .catch(err => {
         res.status(401).json(err);
@@ -61,5 +64,17 @@ module.exports = function(app) {
     await db.Product.create(newProduct);
     res.status(200);
     res.send("Success");
-  })
+  });
+
+
+
+
+
+
+
+
+
+
+
+ 
 };
