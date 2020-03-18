@@ -26,6 +26,17 @@ module.exports = function(sequelize, DataTypes) {
 
     }
   });
+  //  adding some data to the products table 
+  // let newProduct={
+  //   item_header:"HDMI Cable",
+  //   item_price:18,
+  //   item_explanation:"High qulity material HDMI cable",
+  //   quantity:7
+  // }
+  // product.create(newProduct).then(function(data){
+  //       console.log(data);
+    
+  //   })
   // Creating a custom method for our User model. This will check if an unhashed password entered by the user can be compared to the hashed password stored in our database
   return product;
 };
