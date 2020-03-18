@@ -77,4 +77,14 @@ module.exports = function(app) {
     });
        
   });
+ 
+  // creating the route for sending the view for add item
+  app.get("/index/additem",(req,res)=>{
+    res.render("admin");
+  })
+
+
+
+
+
 };

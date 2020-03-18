@@ -1,0 +1,53 @@
+         
+        <!-- Manin content -->
+    <div class="container jumbotron d-flex justify-content-start  " style="margin-top: 40px;">  
+        <div class="row ">
+            <form action="/index/additem" method="post" id="additemForm">
+            <!-- item header -->
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <div class="form-group">
+                    <label class="col-form-label col-form-label-lg" for="item-header">Item Header</label>
+                    <input class="form-control form-control-lg" name="item_header" type="text" placeholder="Item Header" id="item-header">
+                  </div>
+            </div>
+            <!-- item price -->
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <div class="form-group" style="width: 200px;">
+                    <label class="col-form-label col-form-label-lg"  for="Item-price">Item price</label>
+                    <input class="form-control form-control-lg" name="item_price" type="number" min="1" placeholder=" $ input price" id="Item-price">
+                  </div>
+            </div>
+            <!-- item details -->
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <div class="form-group">
+                    <label class="col-form-label col-form-label-lg" for="item-details">Item Deatils</label>
+                    <input class="form-control form-control-lg" name="item_explanation" type="text" placeholder="Item Deatils" id="item-details">
+                  </div>
+            </div>
+              <!-- input picture -->
+              <div class="col-sm-12 col-md-12 col-lg-12">
+              <div class="form-group">
+                <label for="input-picture">input item picture</label>
+                <input type="file" class="form-control-file" name="item_pic" id="input-picture" aria-describedby="fileHelp">
+                <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
+              </div>
+            </div>
+            <!-- item quantity -->
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <div class="form-group" style="width: 200px;">
+                    <label class="col-form-label col-form-label-lg" for="input-quantity">Item quantity</label>
+                    <input class="form-control form-control-lg" name="quantity" type="number" min="1" placeholder="input number" id="input-quantity">
+                  </div>
+            </div>
+        </form>
+            <!-- submit button -->
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <button type="submit" form="additemForm" value="Submit" class="btn btn-primary btn-lg">Add to store</button>
+             </div>
+
+          
+      
+        </div>
+        
+        
+    </div>

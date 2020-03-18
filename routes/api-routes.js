@@ -67,11 +67,14 @@ module.exports = function(app) {
   });
 
 
-
-
-
-
-
+  // creatin route for adding new item to the database
+  app.post("/index/additem" , async(req,res)=>{
+    let{item_header,item_price,item_explanation,quantity}=req.body;
+    await db.Product.create({item_header,item_price,item_explanation,quantity});
+    res.status(200);
+    // res.send("Success");
+    res.redirect("/");
+  });
 
 
 
