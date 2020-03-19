@@ -2,7 +2,7 @@
         <!-- Manin content -->
     <div class="container jumbotron d-flex justify-content-start  " style="margin-top: 40px;">  
         <div class="row ">
-            <form action="/index/additem" method="post" id="additemForm">
+            <form action="/api/products" method="post" id="additemForm" encType="multipart/form-data">
             <!-- item header -->
             <div class="col-sm-12 col-md-12 col-lg-12">
                 <div class="form-group">
@@ -28,7 +28,7 @@
               <div class="col-sm-12 col-md-12 col-lg-12">
               <div class="form-group">
                 <label for="input-picture">input item picture</label>
-                <input type="file" class="form-control-file" name="item_pic" id="input-picture" aria-describedby="fileHelp">
+                <input type="file" class="form-control-file" name="img_url" id="input-picture" aria-describedby="fileHelp">
                 <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
               </div>
             </div>

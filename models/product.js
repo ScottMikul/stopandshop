@@ -24,6 +24,11 @@ module.exports = function(sequelize, DataTypes) {
         allowNull:false,
         allowEmpty:false
 
+    },
+    img_url:{
+      type:DataTypes.STRING,
+      allowNull:false,
+      allowEmpty:false
     }
   });
   //  adding some data to the products table 

@@ -14,6 +14,7 @@
 <script src="https://kit.fontawesome.com/f520db768e.js" crossorigin="anonymous"></script>
 <!-- google font -->
 <link href="https://fonts.googleapis.com/css?family=Bellota|Indie+Flower&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah&display=swap" rel="stylesheet">
 {{!-- jquery --}}
 <script
   src="http://code.jquery.com/jquery-3.4.1.min.js"
@@ -46,14 +47,20 @@
               <a class="nav-link active" href="/">Home</a>
             </li>
             <li class="nav-item">
+              <a class="nav-link active logOut hide" href="/logout">Log-out</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link active signup" data-toggle="modal" data-target="#modalRegisterForm" href="/api/signup">Sign-up</a>
             </li>
             <li class="nav-item">
               <a class="nav-link active login" data-toggle="modal" data-target="#modalLoginForm"  href="#">Login</a>
             </li>
+            <li class="nav-item">
+              <h4 class="nav-link active userMessage hide" data-toggle="modal" data-target="#modalLoginForm"  href="#">Welcome {{name}}</h4>
+            </li>
            
           </ul>
-          <button type="button"  class="btn btn-secondary"><span class="fas fa-shopping-cart"></span><span class="badge badge-pill badge-warning " id="cart-item-num">0</span></button>
+          <button type="button"  class="btn btn-secondary" id="cart"><span class="fas fa-shopping-cart"></span><span class="badge badge-pill badge-warning " id="cart-item-num">0</span></button>
         </div>
       </nav>
 

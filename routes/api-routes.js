@@ -1,6 +1,7 @@
 // Requiring our models and passport as we've configured it
 const db = require("../models");
 let passport = require("../config/passport");
+const path = require("path");
 
 module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
@@ -39,7 +40,7 @@ module.exports = function(app) {
     res.redirect("/");
   });
 
-  // Route for getting some data about our user to be used client side
+  // Route for getting some data about our user to be used in client side
   app.get("/api/user_data", (req, res) => {
     if (!req.user) {
       // The user is not logged in, send back an empty object
@@ -54,30 +55,55 @@ module.exports = function(app) {
     }
   });
 
-  app.get("/api/products", async (req, res) => {
-    const products = await db.Product.findAll();
-    res.json(products);
-  });
+  //incase we need the front end to get a list of all of the products
+  // app.get("/api/products", async (req, res) => {
+  //   const products = await db.Product.findAll();
+  //   res.json(products);
+  //   //res.redirect("/members");
+  //   res.status(200);
+  //   // res.send("Success");
+  // });
 
   app.post("/api/products", async (req,res)=>{
+    if (!req.files || Object.keys(req.files).length === 0) {
+      return res.status(400).send('No files were uploaded.');
+    }
     const newProduct = req.body;
+    console.log("this is the req.body!"+newProduct);
+    console.log(" JUST FILES OBJECT --->>",req.files);
+    console.log(" imgurl object+++++++",req.files.img_url);
+    console.log(" file name+++++++",req.files.img_url.name);
+
+    
+
+ 
+  
+    // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
+    let img_url = req.files.img_url;
+  
+    // Use the mv() method to place the file somewhere on your server
+    console.log(path.join(__dirname,`/public/assets/img/upload/`,img_url.name));
+    img_url.mv(path.join(__dirname,`/public/assets/img/upload/`,img_url.name), async function(err) {
+      if (err)
+        return res.status(500).send(err);
+
+    newProduct.img_url = img_url.name;
     await db.Product.create(newProduct);
     res.status(200);
+    //get /admin/products
+    res.redirect("/admin/products");
     res.send("Success");
+    });
   });
 
 
   // creatin route for adding new item to the database
-  app.post("/index/additem" , async(req,res)=>{
-    let{item_header,item_price,item_explanation,quantity}=req.body;
-    await db.Product.create({item_header,item_price,item_explanation,quantity});
-    res.status(200);
-    // res.send("Success");
-    res.redirect("/");
-  });
-
-
-
-
+  // app.post("/index/additem" , async(req,res)=>{
+  //   let{item_header,item_price,item_explanation,quantity}=req.body;
+  //   await db.Product.create({item_header,item_price,item_explanation,quantity});
+  //   res.status(200);
+  //   await alert("Success");
+  //   res.redirect("/index/additem");
+  // });
  
 };

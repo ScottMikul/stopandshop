@@ -1,11 +1,11 @@
   <div class="jumbotron">
             <form  id="item-info-form"> 
-                <h3 class="display-5" > Title : {{item.item_header}}</h3>
-                <img src="../assets/img/defult-sale-item.jpg" class="align-self-center mr-3" alt="..." width="200px" height="200px">
+                <h3 class="display-5" id="item_header" value="{{item.item_header}}" > Title : {{item.item_header}}</h3>
+                <img id="img_url" src="../assets/img/defult-sale-item.jpg" class="align-self-center mr-3" alt="..." width="200px" height="200px">
                 
                 <hr class="my-4">
                 <p class="lead"> Item Deatils : {{item.item_explanation}}.</p>
-                <p>Price:$ {{item.item_price}}</p>
+                <p  id="item_price" id="item_price" value="{{item.item_price}}">Price:$ {{item.item_price}}</p>
                 <div class="form-group">
                     <label for="FormControlSelect">Quantity :</label>
                     <select class="form-control" id="FormControlSelect" style="width:80px">
