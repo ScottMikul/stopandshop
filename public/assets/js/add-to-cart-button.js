@@ -4,6 +4,7 @@ $(document).on("click",".add-to-cart",function(event){
     let id =$(this).attr("value");
     let item_header=$("#item_header").attr("value"); 
     let item_price=$("#item_price").attr("value");
+    let img_url=$("#img_url").attr("src");
     console.log("item header--->>>",item_header);           
     console.log(" buttum ID :",id);
     let quantity= parseInt($("#FormControlSelect").val());
@@ -17,7 +18,8 @@ $(document).on("click",".add-to-cart",function(event){
         id:id,
         header:item_header,
         price:item_price,
-        quantity:quantity
+        quantity:quantity,
+        img_url:img_url
     };
 
     //check first to see if we already have this item in our cart

@@ -1,10 +1,12 @@
   <div class="jumbotron">
             <form  id="item-info-form"> 
                 <h3 class="display-5" id="item_header" value="{{item.item_header}}" > Title : {{item.item_header}}</h3>
-                <img id="img_url" src="../assets/img/defult-sale-item.jpg" class="align-self-center mr-3" alt="..." width="200px" height="200px">
+                <div style="width:200px;">
+                  <img id="img_url" src="{{item.img_url}}" class="card-img-top" alt="{{item.img_url}}" height="200px" >
+                </div>
                 
                 <hr class="my-4">
-                <p class="lead"> Item Deatils : {{item.item_explanation}}.</p>
+                <p class="lead"> Item Details : {{item.item_explanation}}.</p>
                 <p  id="item_price" id="item_price" value="{{item.item_price}}">Price:$ {{item.item_price}}</p>
                 <div class="form-group">
                     <label for="FormControlSelect">Quantity :</label>

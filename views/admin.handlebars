@@ -20,17 +20,16 @@
             <!-- item details -->
             <div class="col-sm-12 col-md-12 col-lg-12">
                 <div class="form-group">
-                    <label class="col-form-label col-form-label-lg" for="item-details">Item Deatils</label>
+                    <label class="col-form-label col-form-label-lg" for="item-details">Item Details</label>
                     <input class="form-control form-control-lg" name="item_explanation" type="text" placeholder="Item Deatils" id="item-details">
                   </div>
             </div>
               <!-- input picture -->
               <div class="col-sm-12 col-md-12 col-lg-12">
-              <div class="form-group">
-                <label for="input-picture">input item picture</label>
-                <input type="file" class="form-control-file" name="img_url" id="input-picture" aria-describedby="fileHelp">
-                <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
-              </div>
+                <div class="form-group">
+                    <label class="col-form-label col-form-label-lg" for="img_url">Image Url</label>
+                    <input class="form-control form-control-lg" name="img_url" type="text" placeholder="https://gph.is/Q4BXP3" id="img_url">
+                  </div>
             </div>
             <!-- item quantity -->
             <div class="col-sm-12 col-md-12 col-lg-12">
@@ -51,3 +50,13 @@
         
         
     </div>
+
+<script>
+
+    $('.login').addClass('hide');
+    $('.signup').addClass('hide');
+    $('.logOut').addClass('show');
+    $('.userMessage').addClass('show');
+
+    
+</script>

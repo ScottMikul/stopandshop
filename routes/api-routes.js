@@ -65,35 +65,29 @@ module.exports = function(app) {
   // });
 
   app.post("/api/products", async (req,res)=>{
-    if (!req.files || Object.keys(req.files).length === 0) {
-      return res.status(400).send('No files were uploaded.');
-    }
+    
     const newProduct = req.body;
-    console.log("this is the req.body!"+newProduct);
-    console.log(" JUST FILES OBJECT --->>",req.files);
-    console.log(" imgurl object+++++++",req.files.img_url);
-    console.log(" file name+++++++",req.files.img_url.name);
-
+    
     
 
  
   
+    // incase we want to try to add files uncomment this.
+
     // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
-    let img_url = req.files.img_url;
+    //let img_url = req.files.img_url;
   
     // Use the mv() method to place the file somewhere on your server
-    console.log(path.join(__dirname,`/public/assets/img/upload/`,img_url.name));
-    img_url.mv(path.join(__dirname,`/public/assets/img/upload/`,img_url.name), async function(err) {
-      if (err)
-        return res.status(500).send(err);
+    // console.log(path.join(__dirname,`/public/assets/img/upload/`,img_url.name));
+    // img_url.mv(path.join(__dirname,`/public/assets/img/upload/`,img_url.name), async function(err) {
+    //   if (err)
+    //     return res.status(500).send(err);
+    // newProduct.img_url = img_url.name;
 
-    newProduct.img_url = img_url.name;
     await db.Product.create(newProduct);
     res.status(200);
-    //get /admin/products
     res.redirect("/admin/products");
-    res.send("Success");
-    });
+    //});
   });
 
 

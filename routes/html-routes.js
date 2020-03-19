@@ -42,7 +42,8 @@ module.exports = function(app) {
         quantity: item.quantity,
         item_explanation: item.item_explanation,
         item_header:item.item_header,
-        item_price:item.item_price}
+        item_price:item.item_price,
+        img_url:item.img_url}
       });
       
       // console.log(products);
@@ -75,7 +76,9 @@ module.exports = function(app) {
       quantity: item.quantity,
        item_explanation: item.item_explanation,
         item_header:item.item_header,
-         item_price:item.item_price}
+         item_price:item.item_price,
+         img_url:item.img_url
+        }
       });
 
     // console.log(products);
@@ -90,13 +93,15 @@ module.exports = function(app) {
     let id =req.params.id;
     let findItem = db.Product.findOne({where: { id: `${id}` }}).then(function(item) {
       
+      console.log(JSON.stringify(item));
       // console.log("item --->>>",item);
       let itemInfo={
         id:item.id,
         item_header:item.item_header,
         item_price:item.item_price,
         item_explanation:item.item_explanation,
-        quantity:item.quantity
+        quantity:item.quantity,
+        img_url:item.img_url
       }
       
       res.render("itemInfo", {item:itemInfo});
@@ -109,17 +114,23 @@ module.exports = function(app) {
     res.render("admin");
   })
 
-  app.post("/cart", (req,res)=>{
-    // console.log("made it to cart route!");
-     const data = req.body;
-     console.log("data: " +JSON.stringify(data));
-
-    res.render("cart",{items:data});
+  app.get("/cart", (req,res)=>{
+    if (req.user) {
+      res.redirect("/cartmember");
+    }
+    else{
+      res.render("cart");
+    }
   })
-  // [
-  //   {id: "3", header: "JavaScript Book", price: "43", quantity: 1},
-  //   {id: "1", header: "USB Drive", price: "23", quantity: 1},
-  //   {id: "4", header: "HDMI Cable", price: "18", quantity: 1}
-  // ]
+
+  app.get("/cartmember", (req,res)=>{
+    if (!req.user) {
+      res.redirect("/cart");
+    }
+    else{
+      res.render("cartmember", {name:req.user.name});
+    }
+  })
+
 
 };
