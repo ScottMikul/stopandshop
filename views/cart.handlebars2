@@ -1,48 +1,31 @@
 {{!-- for each item in checkout table --}}
 
 
-    {{!-- <div id = "newCartItem" class="row"> --}}
-        {{!-- <div class="card border-dark mb-3 mr-2 col-sm-12 col-md-6" style="max-width: 20rem;">
+    <div id = "newCartItem" class="row">
+        <div class="card border-dark mb-3 mr-2 col-sm-12 col-md-6" style="max-width: 20rem;">
             <div class="card-header" name="item-header"></div>
             <div class="card-body">
+                <h4 class="card-title" name="item-title"><span class="item-title"></span></h4>
                 <p class="card-text" name="item-price">Price:$ <span class="item-price"></span></p>
                 <p class="card-text" name="quantity">Quantity: <span class="quantity"></span></p>
             </div>
-        </div> --}}
-
-
-    {{!-- </div> --}}
-
-<div class="row" >
-    <div class="col-sm-12 col-md-6 ">
-        <div>
-            <ul  class="list-group"  id = "cartitems">
-                <li class="list-group-item list-group-item-action active">
-                    Items In The Cart                
-                </li>
-
-                <li id="newCartItem" class="list-group-item d-flex justify-content-between align-items-center  ">
-
-                        <span class="item-header col-4 "> item </span>
-                        <span class="item-price col-4">price</span>
-                        <span class="badge badge-primary badge-pill quantity "> quantity</span>
-
-                    
-                </li>
-
-                <li id="cartTotals" class="list-group-item d-none justify-content-between align-items-center active">
-                    <span class="item-header"> item </span>
-                    <span class="item-price">price</span>
-                    <span class="badge badge-primary badge-pill quantity"> quantity</span>
-                </li>
-            </ul>
         </div>
+
+    </div>
+
+<div class="row">
+    <div class="col-sm-12 col-md-6">
+        <div id="cartitems"></div>
     </div>
     <div class="col-sm-12 col-md-6">
-
+        <div>
+            <div id="total-cost"></div>
+            <div id="total-quantity"></div>
+        </div>
+          <!--Example 2-->
     <div class="jumbotron">
 
-      <h1 class="text-center list-group-item list-group-item-action flex-column align-items-start active ">Checkout</h1>
+      <h1 class="text-center">Checkout</h1>
 
     
  <div class="cell example example2" id="example-2">
@@ -92,7 +75,7 @@
           <div class="baseline"></div>
         </div>
       </div>
-    <button type="submit" class="btn btn-primary" data-tid="elements_examples.form.pay_button">Pay $<span id="total"></span></span></button>
+    <button type="submit" class="btn btn-primary" data-tid="elements_examples.form.pay_button">Pay $25</button>
     
     </form>
    
@@ -116,34 +99,23 @@
         const cartStorageObj = JSON.parse(cartStorageString);
         cartStorageObj.forEach(item =>{
             let newCartItem = $("#newCartItem").clone();
-            newCartItem.find(".item-header").text( item.header);
-            newCartItem.find(".item-price").text(`$ ${item.price}`);
+            newCartItem.find(".card-img-top").attr("src", item.img_url);
+            newCartItem.find(".card-img-top").attr("alt", item.img_url);
+            newCartItem.find(".card-header").text('Item: ' + item.header);
+            newCartItem.find(".item-price").text(item.price);
             newCartItem.find(".quantity").text(item.quantity);
             
 
             totalQuantity += item.quantity;
             totalcost+=item.quantity*item.price;
 
-            
              $("#cartitems").append(newCartItem);
-              //$("#cartitems").append('<li><a href="#">New list item</a></li>');
-            //$("#cartitems").append("<li  class=\"list-group-item d-flex justify-content-between align-items-center \"> new item</li>");
         })
 
+        $("#total-cost").text(totalcost);
+        $("#total-quantity").text(totalQuantity);
 
-        $("#total").text(totalcost);
-        $(".totalcost").text(totalcost);
-        $(".totalquantity").text(totalQuantity);
-
-        //this is the totals part
-            let newCartItem = $("#cartTotals").clone();
-            newCartItem.removeClass("d-none");
-            newCartItem.addClass("d-flex");
-            newCartItem.find(".item-header").text( "Totals: ");
-            newCartItem.find(".item-price").text(`$ ${totalcost}`);
-            newCartItem.find(".quantity").text(totalQuantity); 
-            $("#cartitems").append(newCartItem); 
-        // $("#newCartItem").hide(); 
+        $("#newCartItem").hide();
     })
 
 

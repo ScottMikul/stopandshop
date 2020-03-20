@@ -9,6 +9,8 @@ const db = require("../models");
 
 function isAdmin(req,res, next){
   console.log("chekcin if is an admin");
+
+  console.log("let's check the status code in the middleware." +req.statusCode);
   if(req.user){
     if(req.user.isAdmin){
       //redirect to admin page
@@ -53,7 +55,17 @@ module.exports = function(app) {
   });
 
   app.get("/admin/products", isAdmin, (req,res)=>{
-    res.render("admin");
+    console.log("admin producst status code"+req.statusCode);
+    if(req.session.succes){
+      res.render("admin",{name:req.user.name, success:true});
+    }
+    else if(req.session.error){
+      res.render("admin",{name:req.user.name, error:true}); 
+    }
+    else{
+      res.render("admin",{name:req.user.name});
+    }
+
     
   });
 
@@ -82,7 +94,7 @@ module.exports = function(app) {
       });
 
     // console.log(products);
-    res.render("members", {items:items, name:req.user.name});
+    res.render("members", {items:items, name:req.user.name, isAdmin:req.user.isAdmin});
     
     // res.render("members");
     // res.sendFile(path.join(__dirname, "../public/members.html"));

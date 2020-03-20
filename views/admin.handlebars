@@ -1,8 +1,14 @@
          
-        <!-- Manin content -->
+          {{!-- alerts --}}
+
+
+             
+
+    <!-- Manin content -->
     <div class="container jumbotron d-flex justify-content-start  " style="margin-top: 40px;">  
+              {{!-- action="/api/products" method="post" encType="multipart/form-data"--}}
         <div class="row ">
-            <form action="/api/products" method="post" id="additemForm" encType="multipart/form-data">
+            <form id="additemForm" >
             <!-- item header -->
             <div class="col-sm-12 col-md-12 col-lg-12">
                 <div class="form-group">
@@ -21,14 +27,14 @@
             <div class="col-sm-12 col-md-12 col-lg-12">
                 <div class="form-group">
                     <label class="col-form-label col-form-label-lg" for="item-details">Item Details</label>
-                    <input class="form-control form-control-lg" name="item_explanation" type="text" placeholder="Item Deatils" id="item-details">
+                    <input class="form-control form-control-lg" name="item_explanation" type="text" placeholder="Item Details" id="item-details">
                   </div>
             </div>
               <!-- input picture -->
               <div class="col-sm-12 col-md-12 col-lg-12">
                 <div class="form-group">
                     <label class="col-form-label col-form-label-lg" for="img_url">Image Url</label>
-                    <input class="form-control form-control-lg" name="img_url" type="text" placeholder="https://gph.is/Q4BXP3" id="img_url">
+                    <input class="form-control form-control-lg" name="img_url" type="text" placeholder="https://gph.is/Q4BXP3" size="80" id="img_url">
                   </div>
             </div>
             <!-- item quantity -->
@@ -40,11 +46,21 @@
             </div>
         </form>
             <!-- submit button -->
+
             <div class="col-sm-12 col-md-12 col-lg-12">
+               
+                <div class="alert alert-success hide" role="alert">
+                    Item added <b>successfully !</b>
+                </div>
+                
+               
+                <div class="alert alert-danger hide" role="alert">
+                    ERROR !
+                </div> 
+               
                 <button type="submit" form="additemForm" value="Submit" class="btn btn-primary btn-lg">Add to store</button>
              </div>
-
-          
+                     
       
         </div>
         
@@ -56,7 +72,44 @@
     $('.login').addClass('hide');
     $('.signup').addClass('hide');
     $('.logOut').addClass('show');
-    $('.userMessage').addClass('show');
+    $('.userMessage').addClass('show');    //showing user name in navbar
+
+    $("#additemForm").submit(function(event){
+        event.preventDefault();
+        let postobj = {};
+        postobj.item_header = $("#item-header").val();
+        postobj.item_explanation = $("#item-details").val();
+        postobj.item_price = $("#Item-price").val();
+        postobj.img_url = $("#img_url").val();
+        postobj.quantity = $("#input-quantity").val();
+
+
+        $.ajax({
+            type: "POST",
+            url: "/api/products",
+            data: postobj,
+            dataType: "json"
+        }).then(function(data){
+            console.log(data.failure);
+
+            if(data.failure){
+                $(".alert-danger").fadeIn();
+              
+            }
+             if(data.success){
+                  $(".alert-success").slideToggle(); 
+             }
+                $("#item-header").val("");
+                $("#item-details").val("");
+                $("#Item-price").val("");
+                $("#img_url").val("");
+                $("#input-quantity").val("");
+        })
+    })
+    
+
+ 
+    
 
     
 </script>

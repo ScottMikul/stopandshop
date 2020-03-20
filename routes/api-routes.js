@@ -66,11 +66,8 @@ module.exports = function(app) {
 
   app.post("/api/products", async (req,res)=>{
     
+    console.log("req.body"+ JSON.stringify(req.body));
     const newProduct = req.body;
-    
-    
-
- 
   
     // incase we want to try to add files uncomment this.
 
@@ -83,10 +80,17 @@ module.exports = function(app) {
     //   if (err)
     //     return res.status(500).send(err);
     // newProduct.img_url = img_url.name;
+      try {
+        await db.Product.create(newProduct);
+        res.json({success:true})
+      } catch (error) {
+        console.log(error);
+        res.json({failure:true})
+      }
+    
+    
 
-    await db.Product.create(newProduct);
-    res.status(200);
-    res.redirect("/admin/products");
+     
     //});
   });
 
