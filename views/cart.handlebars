@@ -164,8 +164,7 @@
 
             
              $("#cartitems").append(newCartItem);
-              //$("#cartitems").append('<li><a href="#">New list item</a></li>');
-            //$("#cartitems").append("<li  class=\"list-group-item d-flex justify-content-between align-items-center \"> new item</li>");
+             
         })
 
 
@@ -184,6 +183,16 @@
         // $("#newCartItem").hide(); 
     })
 
+  //after a successful payment there's a reset button
+  //the user should be taken back to the main page and the cart should be empty
+  $(".reset").click(function (){
+    //empty local storage
+    localStorage.removeItem("cart");
+    localStorage.removeItem("numOfitem");
+
+    window.location.href = "/";
+
+  })
     
 {{#if name}}
 
