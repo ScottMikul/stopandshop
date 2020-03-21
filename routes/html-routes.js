@@ -18,7 +18,7 @@ function isAdmin(req,res, next){
      
       next();
     }else{
-      res.redirect("/members");
+      res.redirect("/");
     }
     
   }else{
@@ -31,28 +31,28 @@ function isAdmin(req,res, next){
 
 module.exports = function(app) {
 
-  app.get("/", async (req, res) => {
-    // If the user already has an account send them to the members page
-     if (req.user) {
-      res.redirect("/members");
-    }
-    else{
+  // app.get("/", async (req, res) => {
+  //   // If the user already has an account send them to the members page
+  //    if (req.user) {
+  //     res.redirect("/members");
+  //   }
+  //   else{
 
-      const products = await db.Product.findAll();
-      const items = products.map(item =>  {return {
-        id:item.id,
-        quantity: item.quantity,
-        item_explanation: item.item_explanation,
-        item_header:item.item_header,
-        item_price:item.item_price,
-        img_url:item.img_url}
-      });
+  //     const products = await db.Product.findAll();
+  //     const items = products.map(item =>  {return {
+  //       id:item.id,
+  //       quantity: item.quantity,
+  //       item_explanation: item.item_explanation,
+  //       item_header:item.item_header,
+  //       item_price:item.item_price,
+  //       img_url:item.img_url}
+  //     });
       
-      // console.log(products);
-      res.render("index", {items:items});
-    }
+  //     // console.log(products);
+  //     res.render("index", {items:items});
+  //   }
 
-  });
+  // });
 
   app.get("/admin/products", isAdmin, (req,res)=>{
     console.log("admin producst status code"+req.statusCode);
@@ -69,19 +69,12 @@ module.exports = function(app) {
     
   });
 
-  app.get("/login", (req, res) => {
-    // If the user already has an account send them to the members page
-    if (req.user) {
-      res.redirect("/members");
-    }
-    res.sendFile(path.join(__dirname, "../public/login.html"));
-  });
 
   // Here we've add our isAuthenticated middleware to this route.
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
 
   // adding the route to the member page and poting data in it
-  app.get("/members", isAuthenticated,async  (req, res) => {
+  app.get("/", async  (req, res) => {
     const products = await db.Product.findAll();
     const items = products.map(item =>  {return {
       id:item.id,
@@ -94,7 +87,11 @@ module.exports = function(app) {
       });
 
     // console.log(products);
-    res.render("members", {items:items, name:req.user.name, isAdmin:req.user.isAdmin});
+    if(req.user){
+        res.render("index", {items:items, name:req.user.name, isAdmin:req.user.isAdmin});
+
+    }else{res.render("index", {items:items})}
+   
     
     // res.render("members");
     // res.sendFile(path.join(__dirname, "../public/members.html"));
@@ -128,21 +125,14 @@ module.exports = function(app) {
 
   app.get("/cart", (req,res)=>{
     if (req.user) {
-      res.redirect("/cartmember");
+      res.render("cart", { name:req.user.name, isAdmin:req.user.isAdmin});
     }
     else{
       res.render("cart");
     }
   })
 
-  app.get("/cartmember", (req,res)=>{
-    if (!req.user) {
-      res.redirect("/cart");
-    }
-    else{
-      res.render("cartmember", {name:req.user.name});
-    }
-  })
+
 
 
 };

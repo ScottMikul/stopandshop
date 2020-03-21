@@ -64,26 +64,6 @@ $(function(){
 
 })
 
-$(document).on("click","#cart",function(event){
-    //get the local storage item
-    console.log("this click listner worked!");
-    //let cart= JSON.parse(localStorage.getItem("cart"));
-    // var cart = JSON.parse(localStorage.getItem("cart"));
-    // console.log(" catt stuff",cart);
-   let cart = [ {id: "3", header: "JavaScript Book", price: "43", quantity: 1},
-    {id: "1", header: "USB Drive", price: "23", quantity: 1},
-    {id: "4", header: "HDMI Cable", price: "18", quantity: 1}];
-    $.post("/cart", cart)
-        .then(data => {
-          console.log("inside the ajax ",data);
-        //   window.location.replace("/");
-        //   this does a get
-        //   window.location.href = "/cart";
-          
-        //   If there's an error, handle it by throwing up a bootstrap alert
-        })
-    })
-
 
 
 
