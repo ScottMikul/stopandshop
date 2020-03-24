@@ -113,7 +113,7 @@ module.exports = function(app) {
         img_url:item.img_url
       }
       
-      res.render("itemInfo", {item:itemInfo});
+      res.render("itemInfo", {item:itemInfo,name:req.user.name});
     });
        
   });
