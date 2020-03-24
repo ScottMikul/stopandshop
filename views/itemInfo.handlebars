@@ -28,7 +28,17 @@
           </form>
            <button  value="{{item.id}}"= class="btn btn-primary btn-lg add-to-cart">Add to cart</button>
     </div>
+{{#if name}}
+<script>
 
+    $('.login').addClass('hide');
+    $('.signup').addClass('hide');
+    $('.logOut').addClass('show');
+    $('.userMessage').addClass('show');
+
+    
+</script>
+{{/if}}
     
 
 
