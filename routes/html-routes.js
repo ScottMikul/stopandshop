@@ -112,8 +112,14 @@ module.exports = function(app) {
         quantity:item.quantity,
         img_url:item.img_url
       }
-      
-      res.render("itemInfo", {item:itemInfo,name:req.user.name});
+      if(req.user){
+
+        res.render("itemInfo", {item:itemInfo,name:req.user.name});
+      }
+      else{
+        res.render("itemInfo", {item:itemInfo});
+
+      }
     });
        
   });
