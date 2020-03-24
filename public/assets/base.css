@@ -246,7 +246,7 @@ body {
   margin: 10px;
 }
 
-/** Page-specific styles */
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -277,7 +277,7 @@ main {
 
 .stripes {
   position: absolute;
-  /* width: 100%; */
+  
   transform: skewY(-12deg);
   height: 950px;
   top: -350px;
