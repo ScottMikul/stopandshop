@@ -145,7 +145,7 @@
     $(function(){
 
         const cartStorageString = localStorage.getItem("cart");
-        console.log(cartStorageString);
+        
 
         let totalcost =0;
         let totalQuantity=0;
@@ -207,6 +207,13 @@
 
   <link rel="stylesheet" type="text/css" href="assets/example2.css">
   <link rel="stylesheet" type="text/css" href="assets/base.css"  >
+   {{!-- our css --}}
+  <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/sketchy/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-2kOE+STGAkgemIkUbGtoZ8dJLqfvJ/xzRnimSkQN7viOfwRvWseF7lqcuNXmjwrL" crossorigin="anonymous">
+  <link rel="stylesheet" href="/assets/style.css">
+  <!-- FontAwsome -->
+  <script src="https://kit.fontawesome.com/f520db768e.js" crossorigin="anonymous"></script>
+
 
 <!-- Scripts for Stripe example: -->
 <script src="https://js.stripe.com/v3/"></script>

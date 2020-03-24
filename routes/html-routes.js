@@ -7,66 +7,43 @@ let isAuthenticated = require("../config/middleware/isAuthenticated");
 const db = require("../models");
 
 
-function isAdmin(req,res, next){
-  console.log("chekcin if is an admin");
+function isAdmin(req, res, next) {
 
-  console.log("let's check the status code in the middleware." +req.statusCode);
-  if(req.user){
-    if(req.user.isAdmin){
+
+  if (req.user) {
+    if (req.user.isAdmin) {
       //redirect to admin page
-      console.log("is Logged in admin");
-     
+
+
       next();
-    }else{
+    } else {
       res.redirect("/");
     }
-    
-  }else{
-    console.log("couldn't find user");
+
+  } else {
+
     //redirect to the index page
     res.redirect("/");
 
   }
 }
 
-module.exports = function(app) {
+module.exports = function (app) {
 
-  // app.get("/", async (req, res) => {
-  //   // If the user already has an account send them to the members page
-  //    if (req.user) {
-  //     res.redirect("/members");
-  //   }
-  //   else{
 
-  //     const products = await db.Product.findAll();
-  //     const items = products.map(item =>  {return {
-  //       id:item.id,
-  //       quantity: item.quantity,
-  //       item_explanation: item.item_explanation,
-  //       item_header:item.item_header,
-  //       item_price:item.item_price,
-  //       img_url:item.img_url}
-  //     });
-      
-  //     // console.log(products);
-  //     res.render("index", {items:items});
-  //   }
+  app.get("/admin/products", isAdmin, (req, res) => {
 
-  // });
-
-  app.get("/admin/products", isAdmin, (req,res)=>{
-    console.log("admin producst status code"+req.statusCode);
-    if(req.session.succes){
-      res.render("admin",{name:req.user.name, success:true});
+    if (req.session.succes) {
+      res.render("admin", { name: req.user.name, success: true });
     }
-    else if(req.session.error){
-      res.render("admin",{name:req.user.name, error:true}); 
+    else if (req.session.error) {
+      res.render("admin", { name: req.user.name, error: true });
     }
-    else{
-      res.render("admin",{name:req.user.name});
+    else {
+      res.render("admin", { name: req.user.name });
     }
 
-    
+
   });
 
 
@@ -74,66 +51,64 @@ module.exports = function(app) {
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
 
   // adding the route to the member page and poting data in it
-  app.get("/", async  (req, res) => {
+  app.get("/", async (req, res) => {
     const products = await db.Product.findAll();
-    const items = products.map(item =>  {return {
-      id:item.id,
-      quantity: item.quantity,
-       item_explanation: item.item_explanation,
-        item_header:item.item_header,
-         item_price:item.item_price,
-         img_url:item.img_url
-        }
-      });
+    const items = products.map(item => {
+      return {
+        id: item.id,
+        quantity: item.quantity,
+        item_explanation: item.item_explanation,
+        item_header: item.item_header,
+        item_price: item.item_price,
+        img_url: item.img_url
+      }
+    });
 
-    // console.log(products);
-    if(req.user){
-        res.render("index", {items:items, name:req.user.name, isAdmin:req.user.isAdmin});
 
-    }else{res.render("index", {items:items})}
-   
-    
-    // res.render("members");
-    // res.sendFile(path.join(__dirname, "../public/members.html"));
+    if (req.user) {
+      res.render("index", { items: items, name: req.user.name, isAdmin: req.user.isAdmin });
+
+    } else { res.render("index", { items: items }) }
+
+
   });
 
   // creating rouate for Item-Info html page when you click on each item 
   app.get("/item/:id", (req, res) => {
-    let id =req.params.id;
-    let findItem = db.Product.findOne({where: { id: `${id}` }}).then(function(item) {
-      
-      console.log(JSON.stringify(item));
-      // console.log("item --->>>",item);
-      let itemInfo={
-        id:item.id,
-        item_header:item.item_header,
-        item_price:item.item_price,
-        item_explanation:item.item_explanation,
-        quantity:item.quantity,
-        img_url:item.img_url
-      }
-      if(req.user){
+    let id = req.params.id;
+    let findItem = db.Product.findOne({ where: { id: `${id}` } }).then(function (item) {
 
-        res.render("itemInfo", {item:itemInfo,name:req.user.name});
+
+      let itemInfo = {
+        id: item.id,
+        item_header: item.item_header,
+        item_price: item.item_price,
+        item_explanation: item.item_explanation,
+        quantity: item.quantity,
+        img_url: item.img_url
       }
-      else{
-        res.render("itemInfo", {item:itemInfo});
+      if (req.user) {
+
+        res.render("itemInfo", { item: itemInfo, name: req.user.name });
+      }
+      else {
+        res.render("itemInfo", { item: itemInfo });
 
       }
     });
-       
+
   });
- 
+
   // creating the route for sending the view for add item
-  app.get("/index/additem",(req,res)=>{
+  app.get("/index/additem", (req, res) => {
     res.render("admin");
   })
 
-  app.get("/cart", (req,res)=>{
+  app.get("/cart", (req, res) => {
     if (req.user) {
-      res.render("cart", { name:req.user.name, isAdmin:req.user.isAdmin});
+      res.render("cart", { name: req.user.name, isAdmin: req.user.isAdmin });
     }
-    else{
+    else {
       res.render("cart");
     }
   })

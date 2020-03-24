@@ -5,8 +5,7 @@ $(document).on("click", ".add-to-cart", function (event) {
     let item_header = $("#item_header").attr("value");
     let item_price = $("#item_price").attr("value");
     let img_url = $("#img_url").attr("src");
-    console.log("item header--->>>", item_header);
-    console.log(" buttum ID :", id);
+
     let quantity = parseInt($("#FormControlSelect").val());
     //get cart from localStorage OR initialize a new empty array 
     let cartItem = JSON.parse(localStorage.getItem("cart"));
@@ -39,22 +38,22 @@ $(document).on("click", ".add-to-cart", function (event) {
     let strCartItem = JSON.stringify(cartItem)
     localStorage.setItem("cart", strCartItem);
 
-    console.log("quantity :--->", cartItem[0].quantity);
+
     // loop through localstorage item adding item quantity for each item inside the cart badge cart number
     let resultNumItem = 0;
     for (let i = 0; i < cartItem.length; i++) {
         const element = cartItem[i].quantity;
-        console.log("quantity inside the loop:" + element);
+
         resultNumItem += element;
 
     }
-    console.log("result" + resultNumItem);
+
     localStorage.setItem("numOfitem", resultNumItem);
-    console.log(" number of item i the cart", cartItem.length);
+
 
     // puting the total number of item inside the cart badge
     $("#cart-item-num").text(localStorage.getItem("numOfitem"));
-    // location.reload();                  
+
 });
 
 $(function () {
@@ -63,11 +62,3 @@ $(function () {
 
 
 })
-
-
-
-
-
-
-
-

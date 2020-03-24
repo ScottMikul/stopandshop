@@ -1,5 +1,5 @@
 // 'use strict';
-console.log(" STRIPE js file");
+
 var stripe = Stripe('pk_test_6pRNASCoBOKtIshFeQd4XMUh');
 
 function registerElements(elements, exampleName) {

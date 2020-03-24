@@ -13,7 +13,7 @@ $(document).ready(function () {
       password: passwordInput.val().trim()
     };
 
-    console.log("USER DATA : ", userData);
+
 
     if (!userData.email || !userData.password) {
       return;
@@ -27,8 +27,7 @@ $(document).ready(function () {
 
   // loginUser does a post to our "api/login" route and if successful, redirects us the the members page
   function loginUser(email, password) {
-    console.log("email : ", email);
-    console.log("password :", password);
+
     $.post("/api/login", {
       email: email,
       password: password
@@ -38,7 +37,7 @@ $(document).ready(function () {
         // If there's an error, log the error
       })
       .catch(err => {
-        console.log(err);
+
       });
   }
 });
