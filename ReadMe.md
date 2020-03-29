@@ -9,20 +9,20 @@ Stop and shop is online local store application that allow users buy products fr
  #### Main page 
 
 
-![application View](public/assets/img/app-main-page.PNG)
+![ Main page application View](public/assets/img/app-main-page.PNG)
 
 
 #### Admin page 
 
 
-![application View](public/assets/img/admin-page.PNG)
+![ Admin page application View](public/assets/img/admin-page.png)
 
 
 
 #### Add new product 
 
 
-![application View](public/assets/img/add-product-page.PNG) 
+![Add new product application View](public/assets/img/add-product-page.png) 
 
 
 
@@ -31,7 +31,7 @@ Stop and shop is online local store application that allow users buy products fr
  #### Checkout page
 
 
-![application View](public/assets/img/shopping-cart.png)
+![Checkout page application View](public/assets/img/shopping-cart.png)
 
 
 
