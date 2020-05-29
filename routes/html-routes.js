@@ -13,13 +13,10 @@ function isAdmin(req, res, next) {
   if (req.user) {
     if (req.user.isAdmin) {
       //redirect to admin page
-
-
       next();
     } else {
       res.redirect("/");
     }
-
   } else {
 
     //redirect to the index page
@@ -29,7 +26,6 @@ function isAdmin(req, res, next) {
 }
 
 module.exports = function (app) {
-
 
   app.get("/admin/products", isAdmin, (req, res) => {
 
@@ -64,12 +60,10 @@ module.exports = function (app) {
       }
     });
 
-
     if (req.user) {
       res.render("index", { items: items, name: req.user.name, isAdmin: req.user.isAdmin });
 
     } else { res.render("index", { items: items }) }
-
 
   });
 
@@ -77,7 +71,6 @@ module.exports = function (app) {
   app.get("/item/:id", (req, res) => {
     let id = req.params.id;
     let findItem = db.Product.findOne({ where: { id: `${id}` } }).then(function (item) {
-
 
       let itemInfo = {
         id: item.id,
@@ -112,8 +105,5 @@ module.exports = function (app) {
       res.render("cart");
     }
   })
-
-
-
 
 };

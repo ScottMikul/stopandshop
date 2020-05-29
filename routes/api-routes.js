@@ -2,7 +2,6 @@
 const db = require("../models");
 let passport = require("../config/passport");
 const path = require("path");
-
 module.exports = function (app) {
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
@@ -39,13 +38,9 @@ module.exports = function (app) {
     res.redirect("/");
   });
 
-
-
   app.post("/api/products", async (req, res) => {
 
-
     const newProduct = req.body;
-
     try {
       await db.Product.create(newProduct);
       res.json({ success: true })
@@ -53,7 +48,6 @@ module.exports = function (app) {
       console.log(error);
       res.json({ failure: true })
     }
-
 
   });
 
